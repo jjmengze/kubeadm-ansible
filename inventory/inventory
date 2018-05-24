@@ -1,0 +1,6 @@
+[masters]
+192.168.0.10 ansible_ssh_user=vagrant
+
+[kube-cluster:children]
+masters
+nodes
