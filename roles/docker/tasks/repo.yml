@@ -1,0 +1,20 @@
+- name: Add  apt docker engine repo key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: True
+  when: ansible_os_family == 'Debian'
+
+- name: Add  apt docker engine repo
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    state: present
+  become: True
+  when: ansible_os_family == 'Debian'
+
+- name: Install docker engine (Debian/Ubuntu)
+  when: ansible_os_family == "Debian"
+  apt:
+    update_cache: yes
+    name: "docker-ce={{docker_version}}*"
+    state: present

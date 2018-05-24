@@ -1,0 +1,18 @@
+---
+- name: check if docker deploy is needed
+  raw: which docker
+  register: need_docker
+  ignore_errors: True
+
+- name: Enable docker repo apt
+  when: ( need_docker is failed )
+  include_tasks: repo.yaml
+
+- name: Enable and restart Docker engine
+  when: ( need_docker is failed )
+  systemd:
+    name: docker
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+  register: started_docke

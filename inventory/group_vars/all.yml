@@ -1,0 +1,4 @@
+---
+# # Docker Version 17.03 is recommended, but 1.11, 1.12 and 1.13 are known to work as well.
+# # Versions 17.06+ might work, but have not yet been tested and verified by the Kubernetes node team
+docker_version: 17.06.2
