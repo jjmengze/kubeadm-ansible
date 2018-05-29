@@ -1,0 +1,6 @@
+---
+- name: Join  kubernetes cluster
+  raw: kubeadm join \
+    {{ apiserver_advertise_address | default(groups['masters'][0])}}:{{apiserver_bind_port | default('6443')}} \
+    --token {{ token }} \
+    --discovery-token-unsafe-skip-ca-verification

@@ -1,5 +1,7 @@
 [masters]
 10.0.0.228 ansible_ssh_user=ubuntu
+[nodes]
+10.0.0.227 ansible_ssh_user=ubuntu
 
 [kube-cluster:children]
 masters
