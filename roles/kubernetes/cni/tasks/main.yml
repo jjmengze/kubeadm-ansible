@@ -1,0 +1,20 @@
+---
+- name: Create CNI plugin folder
+  file:
+    path: /opt/cni-plugin
+    state: directory
+    owner: "{{ansible_user_id}}"
+    group: "{{ansible_user_id}}"
+    mode: 0775
+
+- name: Download CNI related resources.
+  get_url:
+    url: "{{ item }}"
+    dest: /opt/cni-plugin
+    mode: 755
+  with_items:
+    - https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+    - https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+
+- name: Apply CNI
+  raw: kubectl apply -f /opt/cni-plugin

@@ -6,6 +6,7 @@
 - name: Init kubernetes cluster with kubeadm
   # when: ( need_docker is succeeded )
   become: True
+  ignore_errors: True
   raw: kubeadm init \
     --apiserver-advertise-address "{{apiserver_advertise_address | default('0.0.0.0')}}" \
     --apiserver-bind-port "{{apiserver_bind_port | default('6443')}}" \
