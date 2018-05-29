@@ -1,0 +1,6 @@
+---
+- name: Close system swap
+  shell: "swapoff -a"
+
+- name: Enable kubernetes repo apt
+  include_tasks: repo.yml

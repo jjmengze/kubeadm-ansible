@@ -1,5 +1,5 @@
 [masters]
-192.168.0.10 ansible_ssh_user=vagrant
+10.0.0.228 ansible_ssh_user=ubuntu
 
 [kube-cluster:children]
 masters

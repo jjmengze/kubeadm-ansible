@@ -6,7 +6,7 @@
 
 - name: Enable docker repo apt
   when: ( need_docker is failed )
-  include_tasks: repo.yaml
+  include_tasks: repo.yml
 
 - name: Enable and restart Docker engine
   when: ( need_docker is failed )

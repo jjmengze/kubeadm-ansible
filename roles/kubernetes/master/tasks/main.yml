@@ -1,0 +1,32 @@
+# - name: check if kubernetes init is needed
+#   raw: kubeadm init
+#   register: need_init
+#   ignore_errors: True
+
+- name: Init kubernetes cluster with kubeadm
+  # when: ( need_docker is succeeded )
+  become: True
+  raw: kubeadm init \
+    --apiserver-advertise-address "{{apiserver_advertise_address | default('0.0.0.0')}}" \
+    --apiserver-bind-port "{{apiserver_bind_port | default('6443')}}" \
+    --apiserver-cert-extra-sans "{{apiserver_cert_extra_sans | default('')}}" \
+    --cert-dir "{{cert_dir | default('/etc/kubernetes/pki')}}" \
+    --service-dns-domain "{{service_dns_domain | default('cluster.local')}}" \
+    --token  "{{token | default('')}}" \
+    --token-ttl "{{token_ttl | default('24h0m0s')}}" \
+    --cri-socket "{{cri_socket | default('/var/run/dockershim.sock')}}"\
+    --feature-gates "{{feature_gates | default('')}}" \
+    --kubernetes-version "{{ kubernetes_version | default('')}}" \
+    --pod-network-cidr "{{ pod_network_cidr | default('')}}" \
+  register: kubeadm
+
+- name: Create kube config directory
+  file:
+    path: "{{ansible_user_dir}}/.kube/"
+    state: directory
+
+- name: Copy kube config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ansible_user_dir}}/.kube/config"
+    remote_src: True

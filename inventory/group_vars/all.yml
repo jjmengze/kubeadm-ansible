@@ -1,4 +1,35 @@
 ---
-# # Docker Version 17.03 is recommended, but 1.11, 1.12 and 1.13 are known to work as well.
-# # Versions 17.06+ might work, but have not yet been tested and verified by the Kubernetes node team
+# Docker Version 17.03 is recommended, but 1.11, 1.12 and 1.13 are known to work as well.
+# Versions 17.06+ might work, but have not yet been tested and verified by the Kubernetes node team
 docker_version: 17.06.2
+# The IP address the API Server will advertise it's listening on. Specify '0.0.0.0' to use the address of the default network interface
+# apiserver_advertise_address
+# # Port for the API Server to bind to. (default 6443)
+# apiserver_bind_port
+# # Optional extra Subject Alternative Names (SANs) to use for the API Server serving certificate. Can be both IP addresses and DNS names.
+# apiserver_cert_extra_sans
+# # The path where to save and store the certificates. (default "/etc/kubernetes/pki")
+# cert_dir
+
+# # Specify the CRI socket to connect to. (default "/var/run/dockershim.sock")
+# cri_socket
+# # A set of key=value pairs that describe feature gates for various features. Options are:
+# # Auditing=true|false (ALPHA - default=false)
+# # CoreDNS=true|false (BETA - default=false)
+# # DynamicKubeletConfig=true|false (ALPHA - default=false)
+# # SelfHosting=true|false (ALPHA - default=false)
+# # StoreCertsInSecrets=true|false (ALPHA - default=false)
+# feature_gates
+# # Choose a specific Kubernetes version for the control plane. (default "stable-1.10")
+# kubernetes_version
+
+# # Specify range of IP addresses for the pod network. If set, the control plane will automatically allocate CIDRs for every node.
+# pod_network_cidr
+# # Use alternative range of IP address for service VIPs. (default "10.96.0.0/12")
+# service_cidr
+# # Use alternative domain for services, e.g. "myorg.internal". (default "cluster.local")
+# service_dns_domain
+# # The token to use for establishing bidirectional trust between nodes and masters.
+token: abcdef.0123456789abcdef
+# # The duration before the bootstrap token is automatically deleted. If set to '0', the token will never expire. (default 24h0m0s)
+# token_ttl

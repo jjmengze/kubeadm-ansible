@@ -3,3 +3,9 @@
   become: yes
   roles:
     - { role: docker, tags: docker }
+
+- hosts: masters
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: kubernetes/master, tags: master }

@@ -1,0 +1,21 @@
+- name: Add  apt kubernetes repo key (Debian/Ubuntu)
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+  become: True
+  when: ansible_os_family == 'Debian'
+
+- name: Add  apt kubernetes repo (Debian/Ubuntu)
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-{{ansible_distribution_release}} main
+    state: present
+  become: True
+  when: ansible_os_family == 'Debian'
+
+- name: Install kubernetes packages (Debian/Ubuntu)
+  when: ansible_os_family == "Debian"
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ repo }}"
