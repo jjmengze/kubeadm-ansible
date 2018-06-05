@@ -24,3 +24,7 @@ $cat kubeadm-ansible/inventory/group_vars/all.yml
 #Deploy kubernetes cluster with Kubeadm Ansible Playbook
 $ansible-playbook playbook/init.yml
 ```
+# Tear Down¶
+```bash
+$ansible-playbook playbook/reset.yml
+```
