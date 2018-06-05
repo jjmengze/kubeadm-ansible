@@ -1,0 +1,8 @@
+---
+- hosts: kube-cluster
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Reset Kubernetes component
+      raw: kubeadm reset
+      ignore_errors: True
